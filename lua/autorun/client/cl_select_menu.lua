@@ -3,10 +3,15 @@ if ( SERVER ) then return false end
 concommand.Add("OpenURL_SelectMenu", function()
 	local ply = LocalPlayer()
 
+	if not ( ply:IsAdmin() ) then
+		chat.AddText( Color( 0, 255, 255 ), "You must be admin or higher to open this menu!")
+		return false
+	end
+
 	local selectMenuFrame = vgui.Create( "DFrame" )
 	selectMenuFrame:SetPos( ScrW()/2-250, ScrH()/2-150 )
 	selectMenuFrame:SetSize( 500, 300 )
-	selectMenuFrame:SetTitle( "OpenURL - Selection & Configuration" )
+	selectMenuFrame:SetTitle( "OpenURL - Selection" )
 	selectMenuFrame:SetVisible( true )
 	selectMenuFrame:SetDraggable( false )
 	selectMenuFrame:SetBackgroundBlur( true )
