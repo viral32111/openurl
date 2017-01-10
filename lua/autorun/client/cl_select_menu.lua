@@ -56,16 +56,10 @@ concommand.Add("OpenURL_SelectMenu", function()
 		local StrippedString = string.Replace( selectMenuURLBox:GetValue(), "https://", "www." ) or string.Replace( selectMenuURLBox:GetValue(), "http://", "www." ) or string.Replace( selectMenuURLBox:GetValue(), "https://www.", "www." ) or string.Replace( selectMenuURLBox:GetValue(), "http://www.", "www." )
 		for k, v in pairs( player.GetAll() ) do
 			if ( v:Nick() == selectedPlayer ) then
-				v:ConCommand('OpenURL_WebMenu "' ..  StrippedString .. '" "' .. selectMenuTitleBox:GetValue() .. '"' )
+				v:ConCommand('OpenURL_AuthMenu "' .. ply:Nick() ..  '" "' ..  StrippedString .. '" "' .. selectMenuTitleBox:GetValue() .. '"' )
 			else
 				return false
 			end
 		end
 	end
-
-	local selectMenuAuthorLabel = vgui.Create( "DLabel", selectMenuFrame )
-	selectMenuAuthorLabel:SetPos( 230, 270 )
-	selectMenuAuthorLabel:SetSize( 250, 30 )
-	selectMenuAuthorLabel:SetFont( "DebugFixed" )
-	selectMenuAuthorLabel:SetText( "Addon created by viral32111" )
 end )
