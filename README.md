@@ -7,6 +7,8 @@ This does not open it in the steam web browser instead it uses a custom in-game 
 
 You can open the menu by typing '/url' into chat (Command is admin-only)
 
-Current Version: 1.1.0
+It also has a verification menu so players cannot open annoying menus on other players
+
+Current Version: 1.1.1
 
 Workshop: http://steamcommunity.com/sharedfiles/filedetails/?id=838960710

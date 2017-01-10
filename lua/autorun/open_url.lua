@@ -1,7 +1,7 @@
 if ( SERVER ) then
     print("\nLoading OpenURL...")
     print("  Author: viral32111")
-    print("  Version: 1.1.0")
+    print("  Version: 1.1.1")
     print("  Issues: https://github.com/viral32111/openurl/issues")
     print("  Steam: http://steamcommunity.com/id/viral32111")
     print("  Contact: viral32111@hotmail.com")
@@ -15,5 +15,5 @@ if ( SERVER ) then
 end
 
 if ( CLIENT ) then
-    print("This server is using OpenURL (v1.1.0) (Created by viral32111)")
+    print("This server is using OpenURL (v1.1.1) (Created by viral32111)")
 end
