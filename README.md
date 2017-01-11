@@ -5,7 +5,7 @@ OpenURL
 OpenURL is a simple and lightweight addon that allows any admins to open the URL of a website on a any connected player.
 This does not open it in the steam web browser instead it uses a custom in-game menu.
 
-You can open the menu by typing '/url' into chat (Command is admin-only)
+You can open the menu by typing '/url' into chat (Command is admin only)
 
 It also has a verification menu so players cannot open annoying menus on other players.
 
