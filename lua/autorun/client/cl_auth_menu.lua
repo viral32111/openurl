@@ -1,7 +1,7 @@
 if ( SERVER ) then return false end
 
 concommand.Add("OpenURL_AuthMenu", function( player, command, args )
-	if ( args[1] == nil or args[2] == nil or args[3] == nil ) then print("Invalid arguments supplied in command") return false end
+	if ( args[1] == nil or args[2] == nil or args[3] == nil or args[4] == nil ) then return false end
 
 	local ply = LocalPlayer()
 
@@ -23,7 +23,7 @@ concommand.Add("OpenURL_AuthMenu", function( player, command, args )
 	authFrameAllowButton:SetPos( 10, 64 )
 	authFrameAllowButton:SetSize( 120, 25 )
 	authFrameAllowButton.DoClick = function()
-		ply:ConCommand('OpenURL_WebMenu "' ..  args[2] .. '" "' .. args[3] .. '"' )
+		ply:ConCommand('OpenURL_WebMenu "' ..  args[2] .. '" "' .. args[3] .. '" "' .. args[4] .. '"')
 		authFrame:Close()
 	end
 
