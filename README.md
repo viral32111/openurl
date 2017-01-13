@@ -12,7 +12,5 @@ It also has a verification menu so players cannot open annoying menus on other p
 Current Version: 1.1.3
 
 Workshop: http://steamcommunity.com/sharedfiles/filedetails/?id=838960710
-
 Wiki: https://github.com/viral32111/openurl/wiki
-
-If you have any issues or you have found a bug make a post here: https://github.com/viral32111/openurl/issues or post a comment on the workshop version.
+Issues/Bugs: https://github.com/viral32111/openurl/issues
