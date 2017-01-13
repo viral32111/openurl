@@ -4,7 +4,6 @@ concommand.Add("OpenURL_WebMenu", function( player, command, args )
 	if ( args[1] == nil or args[2] == nil or args[3] == nil ) then return false end
 
 	if ( args[3] == "true" ) then
-		-- local unstrippedString = string.Replace( args[1], "https://www.", "https://" )
 		gui.OpenURL( args[1] )
 	else
 		local webFrame = vgui.Create( "DFrame" )

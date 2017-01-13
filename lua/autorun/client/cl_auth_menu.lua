@@ -16,7 +16,11 @@ concommand.Add("OpenURL_AuthMenu", function( player, command, args )
 	authFrameLabel:SetPos( 10, 30 )
 	authFrameLabel:SetSize( 1000, 32 )
 	authFrameLabel:SetFont( "TargetIDSmall" )
-	authFrameLabel:SetText( args[1] .. " wants to open this website on you: " .. args[2] .. " (" .. args[3] .. ")\nAllow this menu to be opened?")
+	if ( args[4] == "true" ) then
+		authFrameLabel:SetText( args[1] .. " wants to open this website on you: " .. args[2] .. "\nAllow this menu to be opened?")
+	else
+		authFrameLabel:SetText( args[1] .. " wants to open this website on you: " .. args[2] .. " (" .. args[3] .. ")\nAllow this menu to be opened?")
+	end
 
 	local authFrameAllowButton = vgui.Create( "DButton", authFrame )
 	authFrameAllowButton:SetText( "Allow" )

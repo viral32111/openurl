@@ -94,12 +94,12 @@ concommand.Add("OpenURL_SelectMenu", function()
 	selectMenuRunButton:SetEnabled( false )
 	selectMenuRunButton.DoClick = function()
 		selectMenuFrame:Close()
-		for k, v in pairs( player.GetAll() ) do
-			if ( v:Nick() == selectedPlayer ) then
-				v:ConCommand('OpenURL_AuthMenu "' .. ply:Nick() ..  '" "' .. selectMenuURLBox:GetValue() .. '" "' .. selectMenuTitleBox:GetValue() .. '" "' .. tostring( selectMenuOpenInOverlayCheckbox:GetChecked() ) .. '"' )
-			else
-				return false
-			end
-		end
+		net.Start("OpenURLAuthMenu", false)
+			net.WriteString( selectedPlayer )
+			net.WriteString( ply:Nick() )
+			net.WriteString( selectMenuURLBox:GetValue() )
+			net.WriteString( selectMenuTitleBox:GetValue() )
+			net.WriteBool( selectMenuOpenInOverlayCheckbox:GetChecked() )
+		net.SendToServer()
 	end
 end )
