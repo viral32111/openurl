@@ -8,12 +8,14 @@ concommand.Add("OpenURL_SelectMenu", function()
 		return false
 	end
 
+	title = "Enter the title of the window"
+
 	local selectMenuFrame = vgui.Create( "DFrame" )
 	selectMenuFrame:SetPos( ScrW()/2-250, ScrH()/2-150 )
 	selectMenuFrame:SetSize( 500, 300 )
 	selectMenuFrame:SetTitle( "OpenURL - Selection" )
 	selectMenuFrame:SetVisible( true )
-	selectMenuFrame:SetDraggable( false )
+	selectMenuFrame:SetDraggable( true )
 	selectMenuFrame:SetBackgroundBlur( true )
 	selectMenuFrame:ShowCloseButton( true )
 	selectMenuFrame:MakePopup()

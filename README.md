@@ -9,7 +9,7 @@ You can open the menu by typing '/url' into chat (Command is admin only)
 
 It also has a verification menu so players cannot open annoying menus on other players.
 
-Current Version: 1.1.2
+Current Version: 1.1.3
 
 Workshop: http://steamcommunity.com/sharedfiles/filedetails/?id=838960710
 

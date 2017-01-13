@@ -6,9 +6,16 @@ concommand.Add("OpenURL_AuthMenu", function( player, command, args )
 	local ply = LocalPlayer()
 
 	local authFrame = vgui.Create( "DFrame" )
-	authFrame:SetTitle( "Allow website to be opened on you?" )
+	if ( args[4] == "true" ) then
+		authFrame:SetTitle( "OpenURL - Allow website to be opened on you? (In the Steam overlay)" )
+	else
+		authFrame:SetTitle( "OpenURL - Allow website to be opened on you? (In the game browser)" )
+	end
 	authFrame:SetSize( ScrW() * 0.55, ScrH() * 0.09 )
 	authFrame:SetBackgroundBlur( true )
+	authFrame:SetDraggable( true )
+	authFrame:SetVisible( true )
+	authFrame:ShowCloseButton( false )
 	authFrame:Center()
 	authFrame:MakePopup()
 
