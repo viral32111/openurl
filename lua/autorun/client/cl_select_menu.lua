@@ -27,6 +27,7 @@ concommand.Add("OpenURL_SelectMenu", function()
 	local selectMenuRunButton = vgui.Create( "DButton", selectMenuFrame )
 	local selectMenuURLBox = vgui.Create( "DTextEntry", selectMenuFrame )
 	local selectMenuTitleBox = vgui.Create( "DTextEntry", selectMenuFrame )
+	local selectMenuOpenInOverlayCheckbox = vgui.Create( "DCheckBox", selectMenuFrame )
 
 	local selectMenuPlayerList = vgui.Create( "DListView", selectMenuFrame )
 	selectMenuPlayerList:SetMultiSelect( false )
@@ -35,25 +36,27 @@ concommand.Add("OpenURL_SelectMenu", function()
 	selectMenuPlayerList:AddColumn( "Player" )
 	selectMenuPlayerList.OnRowSelected = function( panel, line )
 		selectedPlayer = panel:GetLine( line ):GetValue( 1 )
-		selectMenuPlayerLabel:SetText( "You have selected: " .. selectedPlayer )
+		selectMenuPlayerLabel:SetText( "Will run on: " .. selectedPlayer )
 		selectMenuRunButton:SetText( "Open URL on " .. selectedPlayer )
 		selectMenuRunButton:SetEnabled( true )
 		selectMenuURLBox:SetEnabled( true )
 		selectMenuURLBox:SetText( "Enter the URL you wish to open on the player" )
 		selectMenuTitleBox:SetEnabled( true )
-	selectMenuTitleBox:SetText( "Enter the title of the window" )
+		selectMenuTitleBox:SetText( "Enter the title of the window" )
+		selectMenuOpenInOverlayCheckbox:SetEnabled( true )
+		selectMenuFrame:SetTitle( "OpenURL - Selection (" .. selectedPlayer .. ")" )
 	end
 
 	for k, v in pairs( player.GetAll() ) do
 		selectMenuPlayerList:AddLine( v:Nick() )
 	end
 	
-	selectMenuURLBox:SetPos( 180, 65 )
+	selectMenuURLBox:SetPos( 180, 60 )
 	selectMenuURLBox:SetSize( 310, 25 )
 	selectMenuURLBox:SetEnabled( false )
 	selectMenuURLBox:SetText( "Please click on a player first" )
 
-	selectMenuTitleBox:SetPos( 180, 100 )
+	selectMenuTitleBox:SetPos( 180, 95 )
 	selectMenuTitleBox:SetSize( 310, 25 )
 	selectMenuTitleBox:SetEnabled( false )
 	selectMenuTitleBox:SetText( "Please click on a player first" )
@@ -61,9 +64,9 @@ concommand.Add("OpenURL_SelectMenu", function()
 		title = selectMenuTitleBox:GetValue()
 	end
 
-	local selectMenuOpenInOverlayCheckbox = vgui.Create( "DCheckBox", selectMenuFrame )
 	selectMenuOpenInOverlayCheckbox:SetPos( 180, 130 )
 	selectMenuOpenInOverlayCheckbox:SetValue( 0 )
+	selectMenuOpenInOverlayCheckbox:SetEnabled( false )
 	function selectMenuOpenInOverlayCheckbox:OnChange( bVal )
 		if ( bVal ) then
 			selectMenuTitleBox:SetEnabled( false )
@@ -83,7 +86,7 @@ concommand.Add("OpenURL_SelectMenu", function()
 	selectMenuOpenInOverlayLabel:SetPos( 200, 123 )
 	selectMenuOpenInOverlayLabel:SetSize( 300, 30 )
 	selectMenuOpenInOverlayLabel:SetFont( "TargetIDSmall" )
-	selectMenuOpenInOverlayLabel:SetText( "Open in overlay? (steam web browser)" )
+	selectMenuOpenInOverlayLabel:SetText( "Open in overlay? (Steam web browser)" )
 
 	selectMenuRunButton:SetText( "Please click on a player first" )
 	selectMenuRunButton:SetPos( 180, 255 )
@@ -91,10 +94,9 @@ concommand.Add("OpenURL_SelectMenu", function()
 	selectMenuRunButton:SetEnabled( false )
 	selectMenuRunButton.DoClick = function()
 		selectMenuFrame:Close()
-		local StrippedString = string.Replace( selectMenuURLBox:GetValue(), "https://", "www." ) or string.Replace( selectMenuURLBox:GetValue(), "http://", "www." ) or string.Replace( selectMenuURLBox:GetValue(), "https://www.", "www." ) or string.Replace( selectMenuURLBox:GetValue(), "http://www.", "www." )
 		for k, v in pairs( player.GetAll() ) do
 			if ( v:Nick() == selectedPlayer ) then
-				v:ConCommand('OpenURL_AuthMenu "' .. ply:Nick() ..  '" "' ..  StrippedString .. '" "' .. selectMenuTitleBox:GetValue() .. '" "' .. tostring( selectMenuOpenInOverlayCheckbox:GetChecked() ) .. '"' )
+				v:ConCommand('OpenURL_AuthMenu "' .. ply:Nick() ..  '" "' .. selectMenuURLBox:GetValue() .. '" "' .. selectMenuTitleBox:GetValue() .. '" "' .. tostring( selectMenuOpenInOverlayCheckbox:GetChecked() ) .. '"' )
 			else
 				return false
 			end
