@@ -11,6 +11,6 @@ It also has a verification menu so players cannot open annoying menus on other p
 
 Current Version: 1.1.3
 
-Workshop: http://steamcommunity.com/sharedfiles/filedetails/?id=838960710
+Workshop: http://steamcommunity.com/sharedfiles/filedetails/?id=838960710  
 Wiki: https://github.com/viral32111/openurl/wiki  
-Issues/Bugs: https://github.com/viral32111/openurl/issues
+Issues/Bugs: https://github.com/viral32111/openurl/issues  
