@@ -6,17 +6,13 @@ concommand.Add("OpenURL_AuthMenu", function( player, command, args )
 	local ply = LocalPlayer()
 
 	local authFrame = vgui.Create( "DFrame" )
-	if ( args[4] == "true" ) then
-		authFrame:SetTitle( "OpenURL - Allow website to be opened on you? (In the Steam overlay)" )
-	else
-		authFrame:SetTitle( "OpenURL - Allow website to be opened on you? (In the game browser)" )
-	end
-	authFrame:SetSize( ScrW() * 0.55, ScrH() * 0.09 )
-	authFrame:SetBackgroundBlur( true )
-	authFrame:SetDraggable( true )
+	authFrame:SetPos( ScrW()/2-528, ScrH()/2-48 )
+	authFrame:SetSize( 1056, 97 )
+	authFrame:SetTitle( "OpenURL - Request from " .. args[1] )
 	authFrame:SetVisible( true )
+	authFrame:SetDraggable( true )
+	authFrame:SetBackgroundBlur( true )
 	authFrame:ShowCloseButton( false )
-	authFrame:Center()
 	authFrame:MakePopup()
 
 	local authFrameLabel = vgui.Create( "DLabel", authFrame )
@@ -24,25 +20,27 @@ concommand.Add("OpenURL_AuthMenu", function( player, command, args )
 	authFrameLabel:SetSize( 1000, 32 )
 	authFrameLabel:SetFont( "TargetIDSmall" )
 	if ( args[4] == "true" ) then
-		authFrameLabel:SetText( args[1] .. " wants to open this website on you: " .. args[2] .. "\nAllow this menu to be opened?")
+		authFrameLabel:SetText( args[1] .. " wants to open this website on you: " .. args[2] .. "\nAllow this website to be opened?")
 	else
-		authFrameLabel:SetText( args[1] .. " wants to open this website on you: " .. args[2] .. " (" .. args[3] .. ")\nAllow this menu to be opened?")
+		authFrameLabel:SetText( args[1] .. " wants to open this website on you: " .. args[2] .. " (" .. args[3] .. ")\nAllow this website to be opened?")
 	end
 
 	local authFrameAllowButton = vgui.Create( "DButton", authFrame )
-	authFrameAllowButton:SetText( "Allow" )
+	authFrameAllowButton:SetText( "Accept" )
 	authFrameAllowButton:SetPos( 10, 64 )
 	authFrameAllowButton:SetSize( 120, 25 )
 	authFrameAllowButton.DoClick = function()
 		ply:ConCommand('OpenURL_WebMenu "' ..  args[2] .. '" "' .. args[3] .. '" "' .. args[4] .. '"')
+		print("[OpenURL] " .. args[1] .. "'s website sent to " .. ply:Nick() .. " has been accepted!")
 		authFrame:Close()
 	end
 
 	local authFrameDisallowButton = vgui.Create( "DButton", authFrame )
-	authFrameDisallowButton:SetText( "Disallow" )
+	authFrameDisallowButton:SetText( "Deny" )
 	authFrameDisallowButton:SetPos( 150, 64 )
 	authFrameDisallowButton:SetSize( 120, 25 )
 	authFrameDisallowButton.DoClick = function()
+		print("[OpenURL] " .. args[1] .. "'s website request sent to " .. ply:Nick() .. " has been denied!")
 		authFrame:Close()
 		return false
 	end

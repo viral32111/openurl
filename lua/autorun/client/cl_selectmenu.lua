@@ -44,9 +44,9 @@ concommand.Add("OpenURL_SelectMenu", function()
 		selectMenuURLBox:SetEnabled( true )
 		selectMenuURLBox:SetText( "Enter the URL you wish to open on the player" )
 		selectMenuTitleBox:SetEnabled( true )
-		selectMenuTitleBox:SetText( "Enter the title of the window" )
+		selectMenuTitleBox:SetText( "Enter an easy to recognize title" )
 		selectMenuOpenInOverlayCheckbox:SetEnabled( true )
-		selectMenuFrame:SetTitle( "OpenURL - Selection (" .. selectedPlayer .. ")" )
+		selectMenuFrame:SetTitle( "OpenURL - Selection ( " .. selectedPlayer .. " )" )
 	end
 
 	for k, v in pairs( player.GetAll() ) do

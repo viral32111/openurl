@@ -3,9 +3,11 @@ hook.Add("PlayerSay", "OpenURLSelectMenu", function( ply, text, public )
 	if ( text == "/url" ) then
 		if ( ply:IsAdmin() ) then
 			ply:ConCommand("OpenURL_SelectMenu")
+			print("[OpenURL] " .. ply:Nick() .. " opened the selection menu")
 			return ""
 		else
-			ply:SendLua(' chat.AddText( Color( 0, 255, 255 ), "You must be admin or higher to open this menu!") ')
+			ply:ChatPrint("You must be admin or higher to access this menu!")
+			print("[OpenURL] " .. ply:Nick() .. " tried to open the selection menu but failed.")
 			return ""
 		end
 	end

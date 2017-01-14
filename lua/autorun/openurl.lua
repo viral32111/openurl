@@ -20,10 +20,10 @@ if ( SERVER ) then
     print("[OpenURL] Version: " .. addonVersion )
 
     addServer("sv_commands.lua")
-    addServer("sv_authmenu.lua")
+    addServer("sv_request.lua")
 
     addClient("cl_webmenu.lua")
-    addClient("cl_authmenu.lua")
+    addClient("cl_requestmenu.lua")
     addClient("cl_selectmenu.lua")
 
     print("[OpenURL] Finished loading OpenURL!")
