@@ -31,7 +31,6 @@ concommand.Add("OpenURL_AuthMenu", function( player, command, args )
 	authFrameAllowButton:SetSize( 120, 25 )
 	authFrameAllowButton.DoClick = function()
 		ply:ConCommand('OpenURL_WebMenu "' ..  args[2] .. '" "' .. args[3] .. '" "' .. args[4] .. '"')
-		print("[OpenURL] " .. args[1] .. "'s website sent to " .. ply:Nick() .. " has been accepted!")
 		authFrame:Close()
 	end
 
@@ -40,7 +39,6 @@ concommand.Add("OpenURL_AuthMenu", function( player, command, args )
 	authFrameDisallowButton:SetPos( 150, 64 )
 	authFrameDisallowButton:SetSize( 120, 25 )
 	authFrameDisallowButton.DoClick = function()
-		print("[OpenURL] " .. args[1] .. "'s website request sent to " .. ply:Nick() .. " has been denied!")
 		authFrame:Close()
 		return false
 	end
