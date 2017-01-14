@@ -9,8 +9,6 @@ net.Receive("OpenURLAuthMenu", function()
 		if ( v:Nick() == selectedPlayer ) then
 			v:ConCommand('OpenURL_AuthMenu "' .. playerName ..  '" "' .. URL .. '" "' .. Title .. '" "' .. OverlayMode .. '"' )
 			print("[OpenURL] " .. playerName .. " sent a website request to " .. selectedPlayer .. " with arguments: (URL: " .. URL .. ") (Title: " .. Title .. ") (Overlay: " .. OverlayMode .. ")")
-		else
-			return false
 		end
 	end
 end )
