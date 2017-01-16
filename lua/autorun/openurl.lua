@@ -1,7 +1,7 @@
 local addonVersion = "1.1.3"
 
 local function addFile( File, Type )
-    if ( type == "server" ) then
+    if ( Type == "server" ) then
         print("[OpenURL] Include: " .. File )
         include("autorun/" .. Type .. "/" .. File )
     else
