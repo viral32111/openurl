@@ -1,6 +1,6 @@
 if ( SERVER ) then return false end
 
-concommand.Add("OpenURL_SelectMenu", function()
+concommand.Add("tprequest", function()
 	local ply = LocalPlayer()
 
 	if not ( ply:IsAdmin() ) then

@@ -13,11 +13,11 @@ local function addFile( File, Type )
 end
 
 if ( SERVER ) then
-	util.AddNetworkString("OpenURLAuthMenu")
-
     print("[OpenURL] Loading OpenURL...")
     print("[OpenURL] Author: viral32111")
     print("[OpenURL] Version: " .. addonVersion )
+
+	util.AddNetworkString("OpenURLAuthMenu")
 
     addFile("sv_commands.lua", "server")
     addFile("sv_request.lua", "server")
@@ -32,7 +32,7 @@ if ( CLIENT ) then
     print("[OpenURL] This server is using OpenURL! (Version: " .. addonVersion .. ") (Created by viral32111)")
 end
 
-hook.Add("OnGamemodeLoaded", "OpenURLLoaded", function()
+hook.Add("PostGamemodeLoaded", "OpenURLLoad", function()
 	http.Fetch( "https://raw.githubusercontent.com/viral32111/openurl/master/VERSION.md",
         function( body, len, headers, code )
             local formattedBody = string.gsub( body, "\n", "")
