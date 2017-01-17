@@ -10,6 +10,9 @@ It also has a verification menu so players cannot open annoying menus on other p
 
 Current Version: 1.1.3
 
+If you get any errors with this addon, or maybe something is not working for you create a new issue (https://github.com/viral32111/openurl/issues)
+
 Workshop: http://steamcommunity.com/sharedfiles/filedetails/?id=838960710  
 Wiki: https://github.com/viral32111/openurl/wiki  
-Issues/Bugs: https://github.com/viral32111/openurl/issues  
+
+###### [Copyright 2017 viral32111](https://raw.githubusercontent.com/viral32111/openurl/master/LICENSE)
