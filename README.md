@@ -12,6 +12,6 @@ If your worried about admins opening rude or illegal websites on players, Don't 
 
 You can open the menu by typing '/url' into chat.
 
-#### [Workshop Version](http://steamcommunity.com/sharedfiles/filedetails/?id=838960710)
+[Workshop Version](http://steamcommunity.com/sharedfiles/filedetails/?id=838960710)
 
 ###### [Copyright 2017 viral32111](https://raw.githubusercontent.com/viral32111/openurl/master/LICENSE)
