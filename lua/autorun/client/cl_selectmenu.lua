@@ -1,19 +1,19 @@
 if ( SERVER ) then return false end
 
-concommand.Add("OpenURL_SelectMenu", function()
-	local ply = LocalPlayer()
-
-	if not ( ply:IsAdmin() ) then
+concommand.Add("openurlselect", function()
+	if not ( LocalPlayer():IsAdmin() ) then
 		chat.AddText( Color( 0, 255, 255 ), "You must be admin or higher to open this menu!")
 		return false
 	end
+
+	local ply = LocalPlayer()
 
 	title = "Enter the title of the window"
 
 	local selectMenuFrame = vgui.Create( "DFrame" )
 	selectMenuFrame:SetPos( ScrW()/2-250, ScrH()/2-150 )
 	selectMenuFrame:SetSize( 500, 300 )
-	selectMenuFrame:SetTitle( "OpenURL - Selection" )
+	selectMenuFrame:SetTitle( "URL Selection" )
 	selectMenuFrame:SetVisible( true )
 	selectMenuFrame:SetDraggable( true )
 	selectMenuFrame:SetBackgroundBlur( true )
@@ -30,6 +30,7 @@ concommand.Add("OpenURL_SelectMenu", function()
 	local selectMenuURLBox = vgui.Create( "DTextEntry", selectMenuFrame )
 	local selectMenuTitleBox = vgui.Create( "DTextEntry", selectMenuFrame )
 	local selectMenuOpenInOverlayCheckbox = vgui.Create( "DCheckBox", selectMenuFrame )
+	local selectMenuOpenInYouTubeCheckbox = vgui.Create( "DCheckBox", selectMenuFrame )
 
 	local selectMenuPlayerList = vgui.Create( "DListView", selectMenuFrame )
 	selectMenuPlayerList:SetMultiSelect( false )
@@ -46,7 +47,7 @@ concommand.Add("OpenURL_SelectMenu", function()
 		selectMenuTitleBox:SetEnabled( true )
 		selectMenuTitleBox:SetText( "Enter an easy to recognize title" )
 		selectMenuOpenInOverlayCheckbox:SetEnabled( true )
-		selectMenuFrame:SetTitle( "OpenURL - Selection ( " .. selectedPlayer .. " )" )
+		selectMenuOpenInYouTubeCheckbox:SetEnabled( true )
 	end
 
 	for k, v in pairs( player.GetAll() ) do
@@ -72,7 +73,9 @@ concommand.Add("OpenURL_SelectMenu", function()
 	function selectMenuOpenInOverlayCheckbox:OnChange( bVal )
 		if ( bVal ) then
 			selectMenuTitleBox:SetEnabled( false )
-			selectMenuTitleBox:SetText( "Cannot have title with overlay mode on" )
+			selectMenuTitleBox:SetText( "Cannot have title with steam web browser" )
+			selectMenuOpenInYouTubeCheckbox:SetEnabled( false )
+			selectMenuOpenInYouTubeCheckbox:SetChecked( false )
 		else
 			if ( selectedPlayer == nil ) then
 				selectMenuTitleBox:SetEnabled( false )
@@ -80,6 +83,8 @@ concommand.Add("OpenURL_SelectMenu", function()
 			else
 				selectMenuTitleBox:SetEnabled( true )
 				selectMenuTitleBox:SetText( title )
+				selectMenuOpenInYouTubeCheckbox:SetEnabled( true )
+				selectMenuOpenInYouTubeCheckbox:SetChecked( false )
 			end
 		end
 	end
@@ -88,7 +93,30 @@ concommand.Add("OpenURL_SelectMenu", function()
 	selectMenuOpenInOverlayLabel:SetPos( 200, 123 )
 	selectMenuOpenInOverlayLabel:SetSize( 300, 30 )
 	selectMenuOpenInOverlayLabel:SetFont( "TargetIDSmall" )
-	selectMenuOpenInOverlayLabel:SetText( "Open in overlay? (Steam web browser)" )
+	selectMenuOpenInOverlayLabel:SetText( "Open in Steam Web Browser?" )
+
+	selectMenuOpenInYouTubeCheckbox:SetPos( 180, 150 )
+	selectMenuOpenInYouTubeCheckbox:SetValue( 0 )
+	selectMenuOpenInYouTubeCheckbox:SetEnabled( false )
+	function selectMenuOpenInYouTubeCheckbox:OnChange( bVal )
+		if ( bVal ) then
+			selectMenuOpenInOverlayCheckbox:SetEnabled( false )
+			selectMenuOpenInOverlayCheckbox:SetChecked( false )
+		else
+			if ( selectedPlayer == nil ) then
+				selectMenuOpenInOverlayCheckbox:SetEnabled( false )
+			else
+				selectMenuOpenInOverlayCheckbox:SetEnabled( true )
+				selectMenuOpenInOverlayCheckbox:SetChecked( false )
+			end
+		end
+	end
+
+	local selectMenuOpenInOYouTubeLabel = vgui.Create( "DLabel", selectMenuFrame )
+	selectMenuOpenInOYouTubeLabel:SetPos( 200, 143 )
+	selectMenuOpenInOYouTubeLabel:SetSize( 300, 30 )
+	selectMenuOpenInOYouTubeLabel:SetFont( "TargetIDSmall" )
+	selectMenuOpenInOYouTubeLabel:SetText( "Open in YouTube?" )
 
 	selectMenuRunButton:SetText( "Please click on a player first" )
 	selectMenuRunButton:SetPos( 180, 255 )
@@ -96,12 +124,13 @@ concommand.Add("OpenURL_SelectMenu", function()
 	selectMenuRunButton:SetEnabled( false )
 	selectMenuRunButton.DoClick = function()
 		selectMenuFrame:Close()
-		net.Start("OpenURLAuthMenu", false)
+		net.Start("OpenURLRequest", false)
 			net.WriteString( selectedPlayer )
 			net.WriteString( ply:Nick() )
 			net.WriteString( selectMenuURLBox:GetValue() )
 			net.WriteString( selectMenuTitleBox:GetValue() )
 			net.WriteBool( selectMenuOpenInOverlayCheckbox:GetChecked() )
+			net.WriteBool( selectMenuOpenInYouTubeCheckbox:GetChecked() )
 		net.SendToServer()
 	end
 end )

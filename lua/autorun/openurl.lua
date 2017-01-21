@@ -1,4 +1,4 @@
-local addonVersion = "1.1.3"
+local addonVersion = "1.1.4"
 
 local function addFile( File, Type )
     if ( Type == "server" ) then
@@ -17,7 +17,7 @@ if ( SERVER ) then
     print("[OpenURL] Author: viral32111")
     print("[OpenURL] Version: " .. addonVersion )
 
-	util.AddNetworkString("OpenURLAuthMenu")
+	util.AddNetworkString("OpenURLRequest")
 
     addFile("sv_commands.lua", "server")
     addFile("sv_request.lua", "server")

@@ -2,7 +2,7 @@ hook.Add("PlayerSay", "OpenURLSelectMenu", function( ply, text, public )
 	text = string.lower( text )
 	if ( text == "/url" ) then
 		if ( ply:IsAdmin() ) then
-			ply:ConCommand("OpenURL_SelectMenu")
+			ply:ConCommand("openurlselect")
 			print("[OpenURL] " .. ply:Nick() .. " opened the selection menu")
 			return ""
 		else
