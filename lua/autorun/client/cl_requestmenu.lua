@@ -1,3 +1,5 @@
+-- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
+
 if ( SERVER ) then return false end
 
 concommand.Add("openurlrequestmenu", function( player, command, args )

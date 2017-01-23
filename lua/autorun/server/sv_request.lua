@@ -1,3 +1,5 @@
+-- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
+
 net.Receive("OpenURLRequest", function()
 	local selectedPlayer = net.ReadString()
 	local playerName = net.ReadString()

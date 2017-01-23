@@ -1,8 +1,12 @@
-hook.Add("PlayerSay", "OpenURLSelectMenu", function( ply, text, public )
+-- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
+
+hook.Add("PlayerSay", "openurlMenuCommand", function( ply, text, public )
         text = string.lower( text )
         if ( text == "/url" ) then
                 if ( ply:IsAdmin() ) then
-                        ply:ConCommand("openurlselect")
+                        net.Start("openurlMenu")
+                                net.WriteEntity( ply )
+                        net.Send( ply )
                         print("[OpenURL] " .. ply:Nick() .. " opened the selection menu")
                         return ""
                 else

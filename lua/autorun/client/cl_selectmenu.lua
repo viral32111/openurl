@@ -1,20 +1,17 @@
+-- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
+
 if ( SERVER ) then return false end
 
-concommand.Add("openurlselect", function()
-	if not ( LocalPlayer():IsAdmin() ) then
-		chat.AddText( Color( 0, 255, 255 ), "You must be admin or higher to open this menu!")
-		return false
-	end
+include("config.lua")
 
-	local ply = LocalPlayer()
-
+hook.Add("Initialize", "openurlSetupSelectMenu", function()
 	title = "Enter the title of the window"
 
 	local selectMenuFrame = vgui.Create( "DFrame" )
 	selectMenuFrame:SetPos( ScrW()/2-250, ScrH()/2-150 )
 	selectMenuFrame:SetSize( 500, 300 )
 	selectMenuFrame:SetTitle( "URL Selection" )
-	selectMenuFrame:SetVisible( true )
+	selectMenuFrame:SetVisible( false )
 	selectMenuFrame:SetDraggable( true )
 	selectMenuFrame:SetBackgroundBlur( true )
 	selectMenuFrame:ShowCloseButton( true )
@@ -132,5 +129,23 @@ concommand.Add("openurlselect", function()
 			net.WriteBool( selectMenuOpenInOverlayCheckbox:GetChecked() )
 			net.WriteBool( selectMenuOpenInYouTubeCheckbox:GetChecked() )
 		net.SendToServer()
+	end
+end )
+
+net.Receive("openurlMenu", function()
+	local ply = net.ReadEntity()
+	if ( useULXPermissions ) then
+		selectMenuFrame:SetVisible( true )
+	else
+		if ( adminOnly ) then
+			if ( ply:IsAdmin() ) then
+				selectMenuFrame:SetVisible( true )
+			else
+				ply:ChatPrint("You must be admin or higher to open this menu!")
+				selectMenuFrame:SetVisible( false )
+			end
+		else
+			selectMenuFrame:SetVisible( true )
+		end
 	end
 end )
