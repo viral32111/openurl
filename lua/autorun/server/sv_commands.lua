@@ -4,9 +4,7 @@ hook.Add("PlayerSay", "openurlMenuCommand", function( ply, text, public )
         text = string.lower( text )
         if ( text == "/url" ) then
                 if ( ply:IsAdmin() ) then
-                        net.Start("openurlMenu")
-                                net.WriteEntity( ply )
-                        net.Send( ply )
+                        ply:ConCommand("openurlselectionmenu")                       
                         print("[OpenURL] " .. ply:Nick() .. " opened the selection menu")
                         return ""
                 else

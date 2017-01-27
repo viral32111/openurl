@@ -1,7 +1,6 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
-local addonVersion = "1.1.5"
-include("config.lua")
+local addonVersion = "1.1.6"
 
 local function addFile( File, Type )
 	if ( Type == "server" ) then
@@ -21,7 +20,6 @@ if ( SERVER ) then
 	print("[OpenURL] Version: " .. addonVersion )
 
 	util.AddNetworkString("OpenURLRequest")
-	util.AddNetworkString("openurlMenu")
 
 	addFile("sv_commands.lua", "server")
 	addFile("sv_request.lua", "server")
@@ -29,12 +27,6 @@ if ( SERVER ) then
 	addFile("cl_webmenu.lua", "client")
 	addFile("cl_requestmenu.lua", "client")
 	addFile("cl_selectmenu.lua", "client")
-
-	if ( useULXPermissions ) then
-		if ( adminOnly ) then
-			Error("[OpenURL] Error: The config file has been setup wrong, You WILL get errors")
-		end
-	end
 
 	print("[OpenURL] Finished loading OpenURL!")
 end

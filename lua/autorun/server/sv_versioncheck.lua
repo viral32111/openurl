@@ -1,6 +1,7 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
 versionchecked = false
+addonVersion = "1.1.6"
 
 hook.Add("PlayerConnect", "openurlCheckVersion", function()
 	if not ( versionchecked ) then

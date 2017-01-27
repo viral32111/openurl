@@ -2,9 +2,9 @@
 
 if ( SERVER ) then return false end
 
-include("config.lua")
+concommand.Add("openurlselectionmenu", function()
+	local ply = LocalPlayer()
 
-hook.Add("Initialize", "openurlSetupSelectMenu", function()
 	title = "Enter the title of the window"
 
 	local selectMenuFrame = vgui.Create( "DFrame" )
@@ -129,23 +129,5 @@ hook.Add("Initialize", "openurlSetupSelectMenu", function()
 			net.WriteBool( selectMenuOpenInOverlayCheckbox:GetChecked() )
 			net.WriteBool( selectMenuOpenInYouTubeCheckbox:GetChecked() )
 		net.SendToServer()
-	end
-end )
-
-net.Receive("openurlMenu", function()
-	local ply = net.ReadEntity()
-	if ( useULXPermissions ) then
-		selectMenuFrame:SetVisible( true )
-	else
-		if ( adminOnly ) then
-			if ( ply:IsAdmin() ) then
-				selectMenuFrame:SetVisible( true )
-			else
-				ply:ChatPrint("You must be admin or higher to open this menu!")
-				selectMenuFrame:SetVisible( false )
-			end
-		else
-			selectMenuFrame:SetVisible( true )
-		end
 	end
 end )

@@ -16,14 +16,8 @@ concommand.Add("openurlweb", function( player, command, args )
 			if ( string.find( args[1], "embed/", 1, false ) ) then
 				embedURL = args[1]
 			else
-				embedURL = string.Replace( args[1], "watch?v=", "embed/")
+				embedURL = string.Replace( args[1], "watch?v=", "embed/") .. "?autoplay=1&controls=0&showinfo=0"
 			end
-
-			http.Post("http://www.viralstudios.phy.sx/youtube/post.php", { url = embedURL }, function( result )
-				if ( result ) then print( "[OpenURL] POST Success! (" .. embedURL .. ")" ) end
-			end, function( failed )
-				Error("[OpenURL] Error: Failed to POST YouTube URL\n")
-			end )
 
 			local youtubeFrame = vgui.Create( "DFrame" )
 			youtubeFrame:SetTitle( "" )
@@ -39,7 +33,7 @@ concommand.Add("openurlweb", function( player, command, args )
 
 			local youtubeHTML = vgui.Create( "HTML", youtubeFrame )
 			youtubeHTML:Dock( FILL )
-			youtubeHTML:OpenURL( "http://www.viralstudios.phy.sx/youtube/youtube.php" )
+			youtubeHTML:OpenURL( embedURL )
 		else
 			local webFrame = vgui.Create( "DFrame" )
 			webFrame:SetTitle( args[2] )
