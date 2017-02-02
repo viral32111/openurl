@@ -1,6 +1,6 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
-local addonVersion = "1.1.6"
+local addonVersion = "1.1.7"
 
 local function addFile( File, Type )
 	if ( Type == "server" ) then
