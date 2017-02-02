@@ -1,18 +1,7 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
 local addonVersion = "1.1.7"
-
-local function addFile( File, Type )
-	if ( Type == "server" ) then
-		print("[OpenURL] Include: " .. File )
-		include("autorun/" .. Type .. "/" .. File )
-	else
-		print("[OpenURL] Added: " .. File )
-		AddCSLuaFile("autorun/" .. Type .. "/" .. File )
-		print("[OpenURL] Include: " .. File )
-		include("autorun/" .. Type .. "/" .. File )
-	end
-end
+local versionchecked = false
 
 if ( SERVER ) then
 	print("[OpenURL] Loading OpenURL...")
@@ -21,12 +10,15 @@ if ( SERVER ) then
 
 	util.AddNetworkString("OpenURLRequest")
 
-	addFile("sv_commands.lua", "server")
-	addFile("sv_request.lua", "server")
-	addFile("sv_versioncheck.lua", "server")
-	addFile("cl_webmenu.lua", "client")
-	addFile("cl_requestmenu.lua", "client")
-	addFile("cl_selectmenu.lua", "client")
+	include("autorun/server/sv_commands.lua")
+	include("autorun/server/sv_request.lua")
+
+	AddCSLuaFile("autorun/client/cl_webmenu.lua")
+	include("autorun/client/cl_webmenu.lua")
+	AddCSLuaFile("autorun/client/cl_requestmenu.lua")
+	include("autorun/client/cl_requestmenu.lua")
+	AddCSLuaFile("autorun/client/cl_selectmenu.lua")
+	include("autorun/client/cl_selectmenu.lua")
 
 	print("[OpenURL] Finished loading OpenURL!")
 end
@@ -34,3 +26,24 @@ end
 if ( CLIENT ) then
 	print("[OpenURL] This server is using OpenURL! (Version: " .. addonVersion .. ") (Created by viral32111)")
 end
+
+hook.Add("PlayerConnect", "openurlCheckVersion", function()
+	if not ( versionchecked ) then
+		versionchecked = true
+		http.Fetch( "https://raw.githubusercontent.com/viral32111/openurl/master/VERSION.md",
+		function( body, len, headers, code )
+			local formattedBody = string.gsub( body, "\n", "")
+			if ( formattedBody == addonVersion ) then
+				print("[OpenURL] You are running the most recent version of OpenURL!")
+			elseif ( formattedBody == "404: Not Found" ) then
+				Error("[OpenURL] Error: Version page does not exist\n")
+			else
+				print("[OpenURL] You are using outdated version of OpenURL! (Latest: " .. formattedBody .. ", Yours: " .. addonVersion .. ")" )
+			end
+		end,
+		function( error )
+			Error("[OpenURL] Error: Failed to get addon version\n")
+		end
+		)
+	end
+end )
