@@ -3,7 +3,7 @@
 hook.Add("PlayerSay", "openurlMenuCommand", function( ply, text, public )
 	text = string.lower( text )
 	if ( text == "/url" ) then
-		ply:ConCommand("openurlselectionmenu")
+		ply:ConCommand("openurllauncher")
 		print("[OpenURL] " .. ply:Nick() .. " opened the selection menu")
 	           return ""
         	end

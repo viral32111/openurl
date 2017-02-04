@@ -2,7 +2,7 @@
 
 if ( SERVER ) then return false end
 
-concommand.Add("openurlrequestmenu", function( player, command, args )
+concommand.Add("openurlrequest", function( player, command, args )
 	if ( args[1] == nil or args[2] == nil or args[3] == nil or args[4] == nil or args[5] == nil ) then return false end
 
 	local ply = LocalPlayer()

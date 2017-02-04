@@ -7,9 +7,19 @@ concommand.Add("openurlweb", function( player, command, args )
 
 	if ( args[3] == "true" ) then
 		if ( string.find( args[1], "http://" ) or string.find( args[1], "https://" ) ) then
-			gui.OpenURL( args[1] )
+			if ( string.find( args[1], "embed/", 1, false ) ) then
+				embedURL = args[1]
+			else
+				embedURL = string.Replace( args[1], "watch?v=", "embed/") .. "?autoplay=1&controls=0&showinfo=0"
+			end
+			gui.OpenURL( embedURL )
 		else
-			gui.OpenURL( "http://" .. args[1] )
+			if ( string.find( args[1], "embed/", 1, false ) ) then
+				embedURL2 = args[1]
+			else
+				embedURL2 = string.Replace( args[1], "watch?v=", "embed/") .. "?autoplay=1&controls=0&showinfo=0"
+			end
+			gui.OpenURL( "http://" .. embedURL2 )
 		end
 	else
 		if ( args[4] == "true" ) then

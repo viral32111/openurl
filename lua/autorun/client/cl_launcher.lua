@@ -2,7 +2,7 @@
 
 if ( SERVER ) then return false end
 
-concommand.Add("openurlselectionmenu", function()
+concommand.Add("openurllauncher", function()
 	local ply = LocalPlayer()
 
 	title = "Enter the title of the window"
@@ -10,7 +10,7 @@ concommand.Add("openurlselectionmenu", function()
 	local selectMenuFrame = vgui.Create( "DFrame" )
 	selectMenuFrame:SetPos( ScrW()/2-250, ScrH()/2-150 )
 	selectMenuFrame:SetSize( 500, 300 )
-	selectMenuFrame:SetTitle( "URL Selection" )
+	selectMenuFrame:SetTitle( "Website Launcher" )
 	selectMenuFrame:SetVisible( true )
 	selectMenuFrame:SetDraggable( true )
 	selectMenuFrame:SetBackgroundBlur( true )
@@ -71,8 +71,6 @@ concommand.Add("openurlselectionmenu", function()
 		if ( bVal ) then
 			selectMenuTitleBox:SetEnabled( false )
 			selectMenuTitleBox:SetText( "Cannot have title with steam web browser" )
-			selectMenuOpenInYouTubeCheckbox:SetEnabled( false )
-			selectMenuOpenInYouTubeCheckbox:SetChecked( false )
 		else
 			if ( selectedPlayer == nil ) then
 				selectMenuTitleBox:SetEnabled( false )
@@ -80,8 +78,6 @@ concommand.Add("openurlselectionmenu", function()
 			else
 				selectMenuTitleBox:SetEnabled( true )
 				selectMenuTitleBox:SetText( title )
-				selectMenuOpenInYouTubeCheckbox:SetEnabled( true )
-				selectMenuOpenInYouTubeCheckbox:SetChecked( false )
 			end
 		end
 	end
@@ -121,7 +117,7 @@ concommand.Add("openurlselectionmenu", function()
 	selectMenuRunButton:SetEnabled( false )
 	selectMenuRunButton.DoClick = function()
 		selectMenuFrame:Close()
-		net.Start("OpenURLRequest", false)
+		net.Start("openurlRequest", false)
 			net.WriteString( selectedPlayer )
 			net.WriteString( ply:Nick() )
 			net.WriteString( selectMenuURLBox:GetValue() )

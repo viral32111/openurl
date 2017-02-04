@@ -1,6 +1,6 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
-local addonVersion = "1.1.7"
+local addonVersion = "1.1.8"
 local versionchecked = false
 
 if ( SERVER ) then
@@ -8,23 +8,27 @@ if ( SERVER ) then
 	print("[OpenURL] Author: viral32111")
 	print("[OpenURL] Version: " .. addonVersion )
 
-	util.AddNetworkString("OpenURLRequest")
+	util.AddNetworkString("openurlRequest")
 
 	include("autorun/server/sv_commands.lua")
 	include("autorun/server/sv_request.lua")
 
-	AddCSLuaFile("autorun/client/cl_webmenu.lua")
-	include("autorun/client/cl_webmenu.lua")
-	AddCSLuaFile("autorun/client/cl_requestmenu.lua")
-	include("autorun/client/cl_requestmenu.lua")
-	AddCSLuaFile("autorun/client/cl_selectmenu.lua")
-	include("autorun/client/cl_selectmenu.lua")
+	AddCSLuaFile("autorun/client/cl_web.lua")
+	include("autorun/client/cl_web.lua")
+	AddCSLuaFile("autorun/client/cl_request.lua")
+	include("autorun/client/cl_request.lua")
+	AddCSLuaFile("autorun/client/cl_launcher.lua")
+	include("autorun/client/cl_launcher.lua")
 
 	print("[OpenURL] Finished loading OpenURL!")
 end
 
 if ( CLIENT ) then
-	print("[OpenURL] This server is using OpenURL! (Version: " .. addonVersion .. ") (Created by viral32111)")
+	print("[OpenURL] Loading OpenURL...")
+	print("[OpenURL] Author: viral32111")
+	print("[OpenURL] Version: " .. addonVersion )
+
+	print("[OpenURL] Finished loading OpenURL!")
 end
 
 hook.Add("PlayerConnect", "openurlCheckVersion", function()

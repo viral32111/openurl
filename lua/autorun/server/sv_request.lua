@@ -1,6 +1,6 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
-net.Receive("OpenURLRequest", function()
+net.Receive("openurlRequest", function()
 	local selectedPlayer = net.ReadString()
 	local playerName = net.ReadString()
 	local URL = net.ReadString()
@@ -10,7 +10,7 @@ net.Receive("OpenURLRequest", function()
 
 	for k, v in pairs( player.GetAll() ) do
 		if ( v:Nick() == selectedPlayer ) then
-			v:ConCommand('openurlrequestmenu "' .. playerName ..  '" "' .. URL .. '" "' .. Title .. '" "' .. OverlayMode .. '" "' .. YouTubeMode .. '"' )
+			v:ConCommand('openurlrequest "' .. playerName ..  '" "' .. URL .. '" "' .. Title .. '" "' .. OverlayMode .. '" "' .. YouTubeMode .. '"' )
 			print("[OpenURL] " .. playerName .. " sent a request to " .. selectedPlayer .. " with arguments: (URL: " .. URL .. ") (Title: " .. Title .. ") (Overlay: " .. OverlayMode .. ") (YouTube: " .. YouTubeMode .. ")")
 		end
 	end
