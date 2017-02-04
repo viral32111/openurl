@@ -33,7 +33,7 @@ end
 
 hook.Add("PlayerConnect", "openurlCheckVersion", function()
 	if not ( versionchecked ) then
-		versionchecked = true
+		local versionchecked = true
 		http.Fetch( "https://raw.githubusercontent.com/viral32111/openurl/master/VERSION.md",
 		function( body, len, headers, code )
 			local formattedBody = string.gsub( body, "\n", "")
