@@ -1,7 +1,7 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
 local addonVersion = "1.1.8"
-local versionchecked = false
+versionchecked = false
 
 if ( SERVER ) then
 	print("[OpenURL] Loading OpenURL...")
@@ -33,7 +33,7 @@ end
 
 hook.Add("PlayerConnect", "openurlCheckVersion", function()
 	if not ( versionchecked ) then
-		local versionchecked = true
+		versionchecked = true
 		http.Fetch( "https://raw.githubusercontent.com/viral32111/openurl/master/VERSION.md",
 		function( body, len, headers, code )
 			local formattedBody = string.gsub( body, "\n", "")
