@@ -12,7 +12,7 @@ If your worried about other players opening rude or illegal websites on players,
 
 You can open the menu by typing '/url' into chat.
 
-Just to let you know, This is not a clientside addon, You can only use it if the server owner has it installed. You cant hop on a random server and expect to be opening websites on people.
+This is not a clientside addon, You can only use it if the server owner has it installed. You can't hop on a random server and expect to be opening websites on people.
 
 [Workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=838960710)  
 [Wiki](https://github.com/viral32111/openurl/wiki)  
