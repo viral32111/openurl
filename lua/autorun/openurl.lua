@@ -10,7 +10,7 @@ if ( SERVER ) then
 
 	util.AddNetworkString("openurlRequest")
 
-	include("autorun/server/sv_commands.lua")
+	include("autorun/server/sv_command.lua")
 	include("autorun/server/sv_request.lua")
 
 	AddCSLuaFile("autorun/client/cl_web.lua")
@@ -40,13 +40,13 @@ hook.Add("PlayerConnect", "openurlCheckVersion", function()
 			if ( formattedBody == addonVersion ) then
 				print("[OpenURL] You are running the most recent version of OpenURL!")
 			elseif ( formattedBody == "404: Not Found" ) then
-				Error("[OpenURL] Error: Version page does not exist\n")
+				Error("[OpenURL] Version page does not exist\n")
 			else
 				print("[OpenURL] You are using outdated version of OpenURL! (Latest: " .. formattedBody .. ", Yours: " .. addonVersion .. ")" )
 			end
 		end,
 		function( error )
-			Error("[OpenURL] Error: Failed to get addon version\n")
+			Error("[OpenURL] Failed to get addon version\n")
 		end
 		)
 	end
