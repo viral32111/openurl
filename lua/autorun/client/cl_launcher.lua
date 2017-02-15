@@ -6,21 +6,30 @@ concommand.Add("openurllauncher", function()
 	local ply = LocalPlayer()
 
 	title = "Enter the title of the window"
+	buttonText = "Please click on a player first"
+	buttonTextColor = Color( 220, 220, 220 )
 
 	local selectMenuFrame = vgui.Create( "DFrame" )
 	selectMenuFrame:SetPos( ScrW()/2-250, ScrH()/2-150 )
 	selectMenuFrame:SetSize( 500, 300 )
-	selectMenuFrame:SetTitle( "Website Launcher" )
+	selectMenuFrame:SetTitle( "OpenURL" )
 	selectMenuFrame:SetVisible( true )
-	selectMenuFrame:SetDraggable( true )
-	selectMenuFrame:SetBackgroundBlur( true )
+	selectMenuFrame:SetDraggable( false )
+	selectMenuFrame:SetSizable( false )
+	selectMenuFrame:SetBackgroundBlur( false )
 	selectMenuFrame:ShowCloseButton( true )
 	selectMenuFrame:MakePopup()
+	function selectMenuFrame:Paint( w, h )
+		draw.RoundedBox( 2, 0, 0, w, h, Color( 50, 50, 50, 255 ) ) -- Body
+		draw.RoundedBox( 2, 0, 0, w, 24, Color( 0, 164, 219, 255 ) ) -- Header
+		draw.RoundedBox( 0, 0, 24, w, 1, Color( 230, 230, 230, 230 ) ) -- Line
+	end
 
 	local selectMenuPlayerLabel = vgui.Create( "DLabel", selectMenuFrame )
 	selectMenuPlayerLabel:SetPos( 180, 30 )
 	selectMenuPlayerLabel:SetSize( 300, 30 )
 	selectMenuPlayerLabel:SetFont( "TargetIDSmall" )
+	selectMenuPlayerLabel:SetColor( Color( 200, 200, 200 ) )
 	selectMenuPlayerLabel:SetText( "Please select a player on the left to continue" )
 
 	local selectMenuRunButton = vgui.Create( "DButton", selectMenuFrame )
@@ -28,6 +37,8 @@ concommand.Add("openurllauncher", function()
 	local selectMenuTitleBox = vgui.Create( "DTextEntry", selectMenuFrame )
 	local selectMenuOpenInOverlayCheckbox = vgui.Create( "DCheckBox", selectMenuFrame )
 	local selectMenuOpenInYouTubeCheckbox = vgui.Create( "DCheckBox", selectMenuFrame )
+	local selectMenuOpenInOverlayLabel = vgui.Create( "DLabel", selectMenuFrame )
+	local selectMenuOpenInYouTubeLabel = vgui.Create( "DLabel", selectMenuFrame )
 
 	local selectMenuPlayerList = vgui.Create( "DListView", selectMenuFrame )
 	selectMenuPlayerList:SetMultiSelect( false )
@@ -36,8 +47,10 @@ concommand.Add("openurllauncher", function()
 	selectMenuPlayerList:AddColumn( "Player" )
 	selectMenuPlayerList.OnRowSelected = function( panel, line )
 		selectedPlayer = panel:GetLine( line ):GetValue( 1 )
-		selectMenuPlayerLabel:SetText( "Will run on: " .. selectedPlayer )
-		selectMenuRunButton:SetText( "Open URL on " .. selectedPlayer )
+		selectMenuPlayerLabel:SetText( "Selected: " .. selectedPlayer )
+		selectMenuPlayerLabel:SetColor( Color( 255, 255, 255 ) )
+		buttonText = "Open on " .. selectedPlayer
+		buttonTextColor = Color( 255, 255, 255 )
 		selectMenuRunButton:SetEnabled( true )
 		selectMenuURLBox:SetEnabled( true )
 		selectMenuURLBox:SetText( "Enter the URL you wish to open on the player" )
@@ -45,6 +58,8 @@ concommand.Add("openurllauncher", function()
 		selectMenuTitleBox:SetText( "Enter an easy to recognize title" )
 		selectMenuOpenInOverlayCheckbox:SetEnabled( true )
 		selectMenuOpenInYouTubeCheckbox:SetEnabled( true )
+		selectMenuOpenInOverlayLabel:SetColor( Color( 255, 255, 255 ) )
+		selectMenuOpenInYouTubeLabel:SetColor( Color( 255, 255, 255 ) )
 	end
 
 	for k, v in pairs( player.GetAll() ) do
@@ -82,36 +97,23 @@ concommand.Add("openurllauncher", function()
 		end
 	end
 
-	local selectMenuOpenInOverlayLabel = vgui.Create( "DLabel", selectMenuFrame )
 	selectMenuOpenInOverlayLabel:SetPos( 200, 123 )
 	selectMenuOpenInOverlayLabel:SetSize( 300, 30 )
 	selectMenuOpenInOverlayLabel:SetFont( "TargetIDSmall" )
+	selectMenuOpenInOverlayLabel:SetColor( Color( 200, 200, 200 ) )
 	selectMenuOpenInOverlayLabel:SetText( "Open in Steam Web Browser?" )
 
 	selectMenuOpenInYouTubeCheckbox:SetPos( 180, 150 )
 	selectMenuOpenInYouTubeCheckbox:SetValue( 0 )
 	selectMenuOpenInYouTubeCheckbox:SetEnabled( false )
-	function selectMenuOpenInYouTubeCheckbox:OnChange( bVal )
-		if ( bVal ) then
-			selectMenuOpenInOverlayCheckbox:SetEnabled( false )
-			selectMenuOpenInOverlayCheckbox:SetChecked( false )
-		else
-			if ( selectedPlayer == nil ) then
-				selectMenuOpenInOverlayCheckbox:SetEnabled( false )
-			else
-				selectMenuOpenInOverlayCheckbox:SetEnabled( true )
-				selectMenuOpenInOverlayCheckbox:SetChecked( false )
-			end
-		end
-	end
 
-	local selectMenuOpenInOYouTubeLabel = vgui.Create( "DLabel", selectMenuFrame )
-	selectMenuOpenInOYouTubeLabel:SetPos( 200, 143 )
-	selectMenuOpenInOYouTubeLabel:SetSize( 300, 30 )
-	selectMenuOpenInOYouTubeLabel:SetFont( "TargetIDSmall" )
-	selectMenuOpenInOYouTubeLabel:SetText( "Open in YouTube?" )
+	selectMenuOpenInYouTubeLabel:SetPos( 200, 143 )
+	selectMenuOpenInYouTubeLabel:SetSize( 300, 30 )
+	selectMenuOpenInYouTubeLabel:SetFont( "TargetIDSmall" )
+	selectMenuOpenInYouTubeLabel:SetColor( Color( 200, 200, 200 ) )
+	selectMenuOpenInYouTubeLabel:SetText( "Open in YouTube?" )
 
-	selectMenuRunButton:SetText( "Please click on a player first" )
+	selectMenuRunButton:SetText( "" )
 	selectMenuRunButton:SetPos( 180, 255 )
 	selectMenuRunButton:SetSize( 310, 35 )
 	selectMenuRunButton:SetEnabled( false )
@@ -125,5 +127,9 @@ concommand.Add("openurllauncher", function()
 			net.WriteBool( selectMenuOpenInOverlayCheckbox:GetChecked() )
 			net.WriteBool( selectMenuOpenInYouTubeCheckbox:GetChecked() )
 		net.SendToServer()
+	end
+	function selectMenuRunButton:Paint( w, h )
+		draw.RoundedBox( 2, 0, 0, w, h, Color( 0, 164, 219, 255 ) )
+		draw.DrawText( buttonText, "TargetIDSmall", w/2, 10, buttonTextColor, TEXT_ALIGN_CENTER )
 	end
 end )
