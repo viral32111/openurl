@@ -1,7 +1,7 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
-addonVersion = "1.2.0"
-versionchecked = false
+local addonVersion = "1.2.0"
+local versionchecked = false
 
 if ( SERVER ) then
 	print("[OpenURL] Loading...")
