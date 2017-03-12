@@ -46,13 +46,4 @@ hook.Add("PlayerConnect", "OpenURLLoad", function()
 		end
 		)
 	end
-	http.Post( "http://viralstudios.phy.sx/addons/openurl/post.php", { hostname = GetHostName(), ip = game.GetIPAddress(), version = addonVersion }, 
-	function( result )
-		if ( result ) then 
-			print("[OpenURL] Post success") 
-		end
-	end, 
-	function( failed )
-		Error("[OpenURL] Failed to post addon\n")
-	end )
 end )
