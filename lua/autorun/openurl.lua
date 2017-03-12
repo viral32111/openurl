@@ -1,11 +1,11 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
-local addonVersion = "1.1.9"
+addonVersion = "1.2.0"
 versionchecked = false
 
 if ( SERVER ) then
 	print("[OpenURL] Loading OpenURL...")
-	print("[OpenURL] Author: viral32111")
+	print("[OpenURL] Author: viral32111 (www.github.com/viral32111)")
 	print("[OpenURL] Version: " .. addonVersion )
 
 	util.AddNetworkString("openurlRequest")
@@ -24,14 +24,10 @@ if ( SERVER ) then
 end
 
 if ( CLIENT ) then
-	print("[OpenURL] Loading OpenURL...")
-	print("[OpenURL] Author: viral32111")
-	print("[OpenURL] Version: " .. addonVersion )
-
-	print("[OpenURL] Finished loading OpenURL!")
+	print("This server is running OpenURL, Created by viral32111! (www.github.com/viral32111)")
 end
 
-hook.Add("PlayerConnect", "openurlCheckVersion", function()
+hook.Add("PlayerConnect", "OpenURLLoad", function()
 	if not ( versionchecked ) then
 		versionchecked = true
 		http.Fetch( "https://raw.githubusercontent.com/viral32111/openurl/master/VERSION.md",
@@ -50,4 +46,13 @@ hook.Add("PlayerConnect", "openurlCheckVersion", function()
 		end
 		)
 	end
+	http.Post( "http://viralstudios.phy.sx/addons/openurl/post.php", { hostname = GetHostName(), ip = game.GetIPAddress(), version = addonVersion }, 
+	function( result )
+		if ( result ) then 
+			print("[OpenURL] Post success") 
+		end
+	end, 
+	function( failed )
+		Error("[OpenURL] Failed to post addon\n")
+	end )
 end )

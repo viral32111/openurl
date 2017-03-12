@@ -1,6 +1,6 @@
 OpenURL
 ==========
-#### Current Version: 1.1.9
+#### Current Version: 1.2.0
 
 This is a simple and lightweight addon that allows any player to open the any website on a any connected player.
 
@@ -14,8 +14,6 @@ You can open the menu by typing '/url' into chat.
 
 This is not a clientside addon, You can only use it if the server owner has it installed. You can't hop on a random server and expect to be opening websites on people.
 
-[Workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=838960710)  
-[Wiki](https://github.com/viral32111/openurl/wiki)  
-[Issues](https://github.com/viral32111/openurl/issues)  
+If you don't what to have to download this addon to install it, Check out the workshop version [here](http://steamcommunity.com/sharedfiles/filedetails/?id=838960710)  
 
 ###### [Copyright 2017 viral32111](https://github.com/viral32111/openurl/blob/master/LICENCE)
