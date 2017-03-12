@@ -14,6 +14,6 @@ You can open the menu by typing '/url' into chat.
 
 This is not a clientside addon, You can only use it if the server owner has it installed. You can't hop on a random server and expect to be opening websites on people.
 
-If you don't what to have to download this addon to install it, Check out the workshop version [here](http://steamcommunity.com/sharedfiles/filedetails/?id=838960710)  
+This addon is also on the workshop!, Check it out [here](http://steamcommunity.com/sharedfiles/filedetails/?id=838960710)  
 
 ###### [Copyright 2017 viral32111](https://github.com/viral32111/openurl/blob/master/LICENCE)

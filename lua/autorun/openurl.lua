@@ -4,7 +4,7 @@ addonVersion = "1.2.0"
 versionchecked = false
 
 if ( SERVER ) then
-	print("[OpenURL] Loading OpenURL...")
+	print("[OpenURL] Loading...")
 	print("[OpenURL] Author: viral32111 (www.github.com/viral32111)")
 	print("[OpenURL] Version: " .. addonVersion )
 
@@ -20,7 +20,7 @@ if ( SERVER ) then
 	AddCSLuaFile("autorun/client/cl_launcher.lua")
 	include("autorun/client/cl_launcher.lua")
 
-	print("[OpenURL] Finished loading OpenURL!")
+	print("[OpenURL] Finished loading!")
 end
 
 if ( CLIENT ) then
