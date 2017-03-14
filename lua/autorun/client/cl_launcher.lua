@@ -2,7 +2,7 @@
 
 if ( SERVER ) then return false end
 
-concommand.Add("openurllauncher", function()
+concommand.Add("OpenURLLauncher", function()
 	local ply = LocalPlayer()
 
 	title = "Enter the title of the window"

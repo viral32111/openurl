@@ -1,6 +1,6 @@
 -- Copyright 2017 viral32111. https://github.com/viral32111/openurl/blob/master/LICENCE
 
-local addonVersion = "1.2.0"
+local addonVersion = "1.2.1"
 local versionchecked = false
 
 if ( SERVER ) then
@@ -8,7 +8,7 @@ if ( SERVER ) then
 	print("[OpenURL] Author: viral32111 (www.github.com/viral32111)")
 	print("[OpenURL] Version: " .. addonVersion )
 
-	util.AddNetworkString("openurlRequest")
+	util.AddNetworkString("OpenURLRequest")
 
 	include("autorun/server/sv_command.lua")
 	include("autorun/server/sv_request.lua")

@@ -2,7 +2,7 @@
 
 if ( SERVER ) then return false end
 
-concommand.Add("openurlrequest", function( player, command, args )
+concommand.Add("OpenURLRequest", function( player, command, args )
 	if ( args[1] == nil or args[2] == nil or args[3] == nil or args[4] == nil or args[5] == nil ) then return false end
 
 	local ply = LocalPlayer()
@@ -50,7 +50,7 @@ concommand.Add("openurlrequest", function( player, command, args )
 	authFrameAllowButton:SetPos( 10, 72 )
 	authFrameAllowButton:SetSize( 510, 25 )
 	authFrameAllowButton.DoClick = function()
-		ply:ConCommand('openurlweb "' ..  args[2] .. '" "' .. args[3] .. '" "' .. args[4] .. '" "' .. args[5] .. '"')
+		ply:ConCommand('OpenURLWeb "' ..  args[2] .. '" "' .. args[3] .. '" "' .. args[4] .. '" "' .. args[5] .. '"')
 		authFrame:Close()
 	end
 	function authFrameAllowButton:Paint( w, h )
