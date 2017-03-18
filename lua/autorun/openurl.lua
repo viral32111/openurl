@@ -4,7 +4,7 @@ local addonVersion = "1.2.1"
 local versionchecked = false
 
 if ( SERVER ) then
-	print("[OpenURL] Loading...")
+	print("[OpenURL] Loaded addon!")
 	print("[OpenURL] Author: viral32111 (www.github.com/viral32111)")
 	print("[OpenURL] Version: " .. addonVersion )
 
@@ -19,15 +19,13 @@ if ( SERVER ) then
 	include("autorun/client/cl_request.lua")
 	AddCSLuaFile("autorun/client/cl_launcher.lua")
 	include("autorun/client/cl_launcher.lua")
-
-	print("[OpenURL] Finished loading!")
 end
 
 if ( CLIENT ) then
 	print("This server is running OpenURL, Created by viral32111! (www.github.com/viral32111)")
 end
 
-hook.Add("PlayerConnect", "OpenURLLoad", function()
+hook.Add( "PlayerConnect", "OpenURLLoad", function()
 	if not ( versionchecked ) then
 		versionchecked = true
 		http.Fetch( "https://raw.githubusercontent.com/viral32111/openurl/master/VERSION.md",
