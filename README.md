@@ -1,6 +1,6 @@
 OpenURL
 ==========
-#### Current Version: 1.2.0
+#### Current Version: 1.2.1
 
 This is a simple and lightweight addon that allows any player to open the any website on a any connected player.
 
