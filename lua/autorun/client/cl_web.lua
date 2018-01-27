@@ -1,5 +1,5 @@
 --[[-------------------------------------------------------------------------
-Copyright 2017 viral32111
+Copyright 2017-2018 viral32111
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ---------------------------------------------------------------------------]]
 
--- This file is commented because even i don't understand how to read my own code
+-- This file is commented af because even i don't understand how to read my own code
 
 if ( SERVER ) then return false end
 

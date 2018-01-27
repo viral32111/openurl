@@ -16,4 +16,4 @@ This is not a clientside addon, You can only use it if the server owner has it i
 
 This addon is also on the workshop!, Check it out [here](http://steamcommunity.com/sharedfiles/filedetails/?id=838960710)  
 
-###### [Copyright 2017 viral32111](https://github.com/viral32111/openurl/blob/master/LICENCE.txt)
+###### [Copyright 2017-2018 viral32111](https://github.com/viral32111/openurl/blob/master/LICENCE.txt)
