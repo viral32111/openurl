@@ -18,4 +18,4 @@ This addon is also on the workshop!, Check it out [here](http://steamcommunity.c
 
 [Donate](https://viral32111.com/donate)
 
-###### [Copyright 2017 - 2022 viral32111](https://github.com/viral32111/openurl/blob/master/LICENCE.txt)
+###### [Copyright 2017-2023 viral32111](https://github.com/viral32111/openurl/blob/master/LICENCE.txt)
